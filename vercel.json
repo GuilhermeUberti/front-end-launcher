@@ -1,5 +1,7 @@
 {
-  "eslint": {
-    "ignoreDuringBuilds": true
+  "build": {
+    "env": {
+      "DISABLE_ESLINT_PLUGIN": "true"
+    }
   }
 }
