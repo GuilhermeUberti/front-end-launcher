@@ -28,7 +28,7 @@ const Navbar = () => {
         </Link>
 
         {/* LINKS */}
-        <ul className="flex gap-6 text-white font-semibold text-sm sm:text-base items-center">
+        <ul className="flex gap-6 text-white font-semibold text-sm sm:text-base items-center overflow-x-auto max-w-full whitespace-nowrap scrollbar-hide">
           <li>
             <Link href="/" className="hover:text-neonPink transition-colors duration-300">Home</Link>
           </li>
