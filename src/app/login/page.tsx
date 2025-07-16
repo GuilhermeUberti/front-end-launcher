@@ -34,6 +34,7 @@ export default function LoginPage() {
   });
 
   const onSubmit = async (data: FormData) => {
+    console.log("URL usada:", `${API_URL}/auth/register`);
     setLoading(true);
     setFeedback("");
 
