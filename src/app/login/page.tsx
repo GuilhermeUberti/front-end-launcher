@@ -59,8 +59,8 @@ export default function LoginPage() {
       } else {
         setFeedback("❌ " + (result?.msg || "Falha no login"))
       }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error) {
+    
+    } catch {
       setFeedback("❌ Erro de rede")
     } finally {
       setLoading(false)

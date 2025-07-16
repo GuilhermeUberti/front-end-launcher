@@ -30,13 +30,13 @@ const Navbar = () => {
         {/* LINKS */}
         <ul className="flex gap-6 text-white font-semibold text-sm sm:text-base items-center">
           <li>
-            <a href="/" className="hover:text-neonPink transition-colors duration-300">Home</a>
+            <Link href="/" className="hover:text-neonPink transition-colors duration-300">Home</Link>
           </li>
           <li>
-            <a href="#jogos" className="hover:text-neonPink transition-colors duration-300">Jogos</a>
+            <Link href="#jogos" className="hover:text-neonPink transition-colors duration-300">Jogos</Link>
           </li>
           <li>
-            <a href="#contato" className="hover:text-neonPink transition-colors duration-300">Contato</a>
+            <Link href="#contato" className="hover:text-neonPink transition-colors duration-300">Contato</Link>
           </li>
 
           {!isLoggedIn ? (
