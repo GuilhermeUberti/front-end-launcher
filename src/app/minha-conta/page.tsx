@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+import { API_URL } from "@/lib/api";
+
 interface Usuario {
   name: string;
   email: string;
@@ -15,25 +17,24 @@ export default function MinhaConta() {
   const [erro, setErro] = useState("");
   const router = useRouter();
 
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      router.replace("/login"); // Evita voltar no botão "voltar"
+      router.replace("/login");
       return;
     }
 
     const buscarPerfil = async () => {
       try {
-        const res = await fetch("http://46.202.144.147:5000/api/user/profile", {
+        const res = await fetch(`${API_URL}/user/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
-        if (!res.ok) {
-          throw new Error("Falha ao buscar perfil");
-        }
+        if (!res.ok) throw new Error("Falha ao buscar perfil");
 
         const json = await res.json();
 
@@ -48,7 +49,7 @@ export default function MinhaConta() {
         } else {
           setErro("Erro desconhecido");
         }
-        localStorage.clear(); // remove dados corrompidos
+        localStorage.clear();
         router.replace("/login");
       } finally {
         setLoading(false);
@@ -56,12 +57,10 @@ export default function MinhaConta() {
     };
 
     buscarPerfil();
-  }, [router]);
+  }, [router, API_URL]);
 
   if (loading) return <p className="text-white text-center mt-20">Carregando...</p>;
-
   if (erro) return <p className="text-red-500 text-center mt-20">{erro}</p>;
-
   if (!usuario) return null;
 
   return (
@@ -78,7 +77,7 @@ export default function MinhaConta() {
 
         {usuario.assinatura_ativa ? (
           <a
-            href="http://46.202.144.147:5000/api/download-launcher"
+            href={`${API_URL?.replace("/api", "")}/download-launcher`}
             className="block mt-6 bg-neonBlue text-black font-semibold py-2 px-4 rounded text-center hover:bg-cyan-400"
             download
           >

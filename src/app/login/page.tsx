@@ -1,12 +1,13 @@
-"use client"
+"use client";
 
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { z } from "zod"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
-import { useAuth } from "../../context/AuthContext"
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { API_URL } from "@/lib/api"; // ✅ importa a variável
 
 const schema = z.object({
   email: z
@@ -14,15 +15,15 @@ const schema = z.object({
     .min(1, { message: "Email é obrigatório" })
     .email("Email inválido"),
   password: z.string().min(6, { message: "Mínimo 6 caracteres" }),
-})
+});
 
-type FormData = z.infer<typeof schema>
+type FormData = z.infer<typeof schema>;
 
 export default function LoginPage() {
-  const { login } = useAuth()
-  const router = useRouter()
-  const [feedback, setFeedback] = useState("")
-  const [loading, setLoading] = useState(false)
+  const { login } = useAuth();
+  const router = useRouter();
+  const [feedback, setFeedback] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -30,42 +31,41 @@ export default function LoginPage() {
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
-  })
+  });
 
   const onSubmit = async (data: FormData) => {
-    setLoading(true)
-    setFeedback("")
+    setLoading(true);
+    setFeedback("");
 
     try {
-      const response = await fetch("http://46.202.144.147:5000/api/auth/login", {
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
-      })
+      });
 
-      const result = await response.json()
+      const result = await response.json();
 
       if (response.ok && result.sucesso) {
         // Armazena os dados no localStorage
-        localStorage.setItem("token", result.token)
-        localStorage.setItem("acesso", result.acesso.toString())
-        localStorage.setItem("assinatura_ativa", result.assinatura_ativa.toString())
+        localStorage.setItem("token", result.token);
+        localStorage.setItem("acesso", result.acesso.toString());
+        localStorage.setItem("assinatura_ativa", result.assinatura_ativa.toString());
 
-        // ✅ Atualiza o contexto para refletir o login na UI
-        login(result.name, data.email)
+        // Atualiza o contexto para refletir o login na UI
+        login(result.name, data.email);
 
-        setFeedback("✅ Login bem-sucedido!")
-        router.push("/") // Redireciona logo após login
+        setFeedback("✅ Login bem-sucedido!");
+        router.push("/");
       } else {
-        setFeedback("❌ " + (result?.msg || "Falha no login"))
+        setFeedback("❌ " + (result?.msg || "Falha no login"));
       }
-    
     } catch {
-      setFeedback("❌ Erro de rede")
+      setFeedback("❌ Erro de rede");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-darkBg text-white px-4">
@@ -74,7 +74,9 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium">Email</label>
+            <label htmlFor="email" className="block text-sm font-medium">
+              Email
+            </label>
             <input
               id="email"
               type="email"
@@ -85,7 +87,9 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium">Senha</label>
+            <label htmlFor="password" className="block text-sm font-medium">
+              Senha
+            </label>
             <input
               id="password"
               type="password"
@@ -103,9 +107,7 @@ export default function LoginPage() {
             {loading ? "Entrando..." : "Entrar"}
           </button>
 
-          {feedback && (
-            <p className="text-center mt-4 text-sm">{feedback}</p>
-          )}
+          {feedback && <p className="text-center mt-4 text-sm">{feedback}</p>}
 
           <p className="text-sm text-center mt-4">
             Não tem uma conta?{" "}
@@ -116,5 +118,5 @@ export default function LoginPage() {
         </form>
       </div>
     </div>
-  )
+  );
 }
