@@ -25,7 +25,7 @@ export default function MinhaConta() {
 
     const buscarPerfil = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/user/profile", {
+        const res = await fetch("http://46.202.144.147:5000/api/user/profile", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -78,7 +78,7 @@ export default function MinhaConta() {
 
         {usuario.assinatura_ativa ? (
           <a
-            href="http://localhost:5000/api/download-launcher"
+            href="http://46.202.144.147:5000/api/download-launcher"
             className="block mt-6 bg-neonBlue text-black font-semibold py-2 px-4 rounded text-center hover:bg-cyan-400"
             download
           >

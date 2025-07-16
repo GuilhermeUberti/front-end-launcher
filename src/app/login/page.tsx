@@ -37,7 +37,7 @@ export default function LoginPage() {
     setFeedback("")
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch("http://46.202.144.147:5000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
