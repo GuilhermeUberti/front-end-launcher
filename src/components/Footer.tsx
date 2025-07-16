@@ -1,11 +1,9 @@
 'use client'
 
 import { FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa'
+import Link from "next/link"
 
-export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+export default function Footer() { 
 
   return (
     <footer className="bg-black text-white py-10 px-6 border-t border-gray-800 mt-20 relative">
@@ -19,8 +17,8 @@ export default function Footer() {
 
         {/* Links legais */}
         <div className="flex gap-6 text-sm text-gray-400">
-          <a href="/" className="hover:text-white transition">Termos de Uso</a>
-          <a href="/" className="hover:text-white transition">Política de Privacidade</a>
+          <Link href="/" className="hover:text-white transition">Termos de Uso</Link>
+          <Link href="/" className="hover:text-white transition">Política de Privacidade</Link>
         </div>
 
         {/* Redes sociais */}

@@ -15,7 +15,7 @@ export async function POST(req: Request) {
   try {
     event = stripe.webhooks.constructEvent(body, sig, endpointSecret)
   } catch (err) {
-    return NextResponse.json({ error: 'Webhook inválido' }, { status: 400 })
+    return NextResponse.json({ err: 'Webhook inválido' }, { status: 400 })
   }
 
   if (event.type === 'checkout.session.completed') {

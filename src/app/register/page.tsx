@@ -63,7 +63,11 @@ export default function RegisterPage() {
                 setFeedback("❌ Erro: " + (result?.mensagem || "tente novamente"));
             }
         } catch (error) {
-            setFeedback("❌ Erro de rede");
+            if (error instanceof Error) {
+                setFeedback("❌ Erro de rede: " + error.message);
+            } else {
+                setFeedback("❌ Erro de rede desconhecido");
+            }
         } finally {
             setLoading(false);
         }

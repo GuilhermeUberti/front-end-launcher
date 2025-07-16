@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export default function PagamentoSucesso() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white p-10 text-center">
@@ -10,12 +12,12 @@ export default function PagamentoSucesso() {
         Em instantes, você receberá um link para download no seu e-mail.
       </p>
 
-      <a
+      <Link
         href="/"
         className="mt-6 inline-block bg-neonBlue hover:bg-blue-700 text-white px-6 py-3 rounded-xl"
       >
         Voltar ao início
-      </a>
+      </Link>
     </div>
   )
 }

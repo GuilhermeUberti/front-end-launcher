@@ -42,8 +42,12 @@ export default function MinhaConta() {
         } else {
           throw new Error(json?.msg || "Erro inesperado");
         }
-      } catch (e: any) {
-        setErro(e.message || "Erro ao carregar dados");
+      } catch (e: unknown) {
+        if (e instanceof Error) {
+          setErro(e.message || "Erro ao carregar dados");
+        } else {
+          setErro("Erro desconhecido");
+        }
         localStorage.clear(); // remove dados corrompidos
         router.replace("/login");
       } finally {
