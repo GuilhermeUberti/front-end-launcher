@@ -1,16 +1,14 @@
 "use client"
 
-import { useRouter } from "next/navigation"
-import { useAuth } from "@/context/AuthContext"
 import { useState } from "react"
+import { useAuth } from "@/context/AuthContext"
 
 export default function AssinarButton() {
-  const { email } = useAuth() // 👈 ajustado aqui
+  const { email } = useAuth()
   const [loading, setLoading] = useState(false)
-  const router = useRouter()
 
   const handleCheckout = async () => {
-    if (!email) return alert("Você precisa estar logado.") // 👈 ajustado aqui
+    if (!email) return alert("Você precisa estar logado.")
 
     setLoading(true)
 
@@ -18,7 +16,7 @@ export default function AssinarButton() {
       const response = await fetch("https://giftplay-backend.onrender.com/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }), // 👈 ajustado aqui
+        body: JSON.stringify({ email }),
       })
 
       const data = await response.json()
