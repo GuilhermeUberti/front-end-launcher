@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { API_URL } from "@/lib/api"; // ✅ importa a variável
+import { API_URL } from "@/lib/api"; 
 
 const schema = z.object({
   email: z

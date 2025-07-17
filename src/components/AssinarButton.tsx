@@ -39,7 +39,7 @@ export default function AssinarButton() {
       onClick={handleCheckout}
       disabled={loading}
     >
-      {loading ? "Redirecionando..." : "Assinar por R$19,90"}
+      {loading ? "Redirecionando..." : "Assinar por R$00,01"}
     </button>
   )
 }
