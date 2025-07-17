@@ -23,7 +23,7 @@ export default function ContatoPage() {
       } else {
         setStatus('erro')
       }
-    } catch (err) {
+    } catch {
       setStatus('erro')
     }
   }
