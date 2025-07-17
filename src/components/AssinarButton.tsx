@@ -13,7 +13,7 @@ export default function AssinarButton() {
     setLoading(true)
 
     try {
-      const response = await fetch("https://giftplay-backend.onrender.com/checkout", {
+      const response = await fetch("https://giftplay-backend.onrender.com/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
