@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { API_URL } from "@/lib/api";
-import AssinarButton from "@/components/AssinarButton";
 
 interface Usuario {
   name: string;
@@ -16,7 +15,6 @@ export default function MinhaConta() {
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState("");
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -28,15 +26,11 @@ export default function MinhaConta() {
 
     const buscarPerfil = async () => {
       try {
-        const res = await fetch(
-          `${API_URL}/user/profile?ts=${Date.now()}`, // ⬅ evita cache
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-            cache: "no-store", // ⬅ garante que não use cache
-          }
-        );
+        const res = await fetch(`${API_URL}/user/profile`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         if (!res.ok) throw new Error("Falha ao buscar perfil");
 
@@ -61,7 +55,7 @@ export default function MinhaConta() {
     };
 
     buscarPerfil();
-  }, [router, searchParams]); // ⬅ garante refetch se tiver query param tipo ?refresh=1
+  }, [router]);
 
   if (loading) return <p className="text-white text-center mt-20">Carregando...</p>;
   if (erro) return <p className="text-red-500 text-center mt-20">{erro}</p>;
@@ -99,3 +93,5 @@ export default function MinhaConta() {
     </div>
   );
 }
+
+import AssinarButton from "@/components/AssinarButton"; 
