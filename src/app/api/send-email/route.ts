@@ -1,26 +1,39 @@
-// app/api/send-email/route.ts
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(req: Request) {
-  const { email } = await req.json()
-
   try {
+    const { nome, email, mensagem } = await req.json()
+
+    if (!nome || !email || !mensagem) {
+      return NextResponse.json(
+        { sucesso: false, erro: 'Campos obrigatórios ausentes' },
+        { status: 400 }
+      )
+    }
+
     await resend.emails.send({
-      from: 'GiftPlay <noreply@giftplay.com>',
-      to: email,
-      subject: 'Seu jogo está pronto para download!',
+      from: 'GiftPlay <contato@usconqtech.com.br>', // ✅ email verificado no Resend
+      to: 'contato@usconqtech.com.br', // você recebe no mesmo email
+      subject: `📩 Nova mensagem de contato de ${nome}`,
       html: `
-        <h2>Obrigado por comprar o Corrida ao Céu 🚀</h2>
-        <p>Você pode baixar seu jogo clicando no link abaixo:</p>
-        <a href="https://giftplay.com/download/corrida-ao-ceu.zip">Baixar jogo</a>
+        <div style="font-family: sans-serif; font-size: 15px;">
+          <p><strong>Nome:</strong> ${nome}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Mensagem:</strong></p>
+          <p style="white-space: pre-line;">${mensagem}</p>
+        </div>
       `,
     })
 
-    return NextResponse.json({ success: true })
-  } catch {
-    return NextResponse.json({ err: 'Falha ao enviar e-mail' }, { status: 500 })
+    return NextResponse.json({ sucesso: true })
+  } catch (error) {
+    console.error('[ERRO ENVIO RESEND]', error)
+    return NextResponse.json(
+      { sucesso: false, erro: 'Erro ao enviar email de contato' },
+      { status: 500 }
+    )
   }
 }

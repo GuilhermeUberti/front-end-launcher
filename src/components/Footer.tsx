@@ -1,10 +1,9 @@
 'use client'
 
-import { FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa'
+import { FaInstagram, FaTiktok, FaYoutube, FaEnvelope } from 'react-icons/fa'
 import Link from "next/link"
 
 export default function Footer() { 
-
   return (
     <footer className="bg-black text-white py-10 px-6 border-t border-gray-800 mt-20 relative">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
@@ -15,10 +14,16 @@ export default function Footer() {
           <div className="text-gray-400 mt-1">&copy; {new Date().getFullYear()} Todos os direitos reservados.</div>
         </div>
 
-        {/* Links legais */}
-        <div className="flex gap-6 text-sm text-gray-400">
-          <Link href="/" className="hover:text-white transition">Termos de Uso</Link>
-          <Link href="/" className="hover:text-white transition">Política de Privacidade</Link>
+        {/* Links legais + contato */}
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-sm text-gray-400">
+          <div className="flex gap-6">
+            <Link href="/" className="hover:text-white transition">Termos de Uso</Link>
+            <Link href="/" className="hover:text-white transition">Política de Privacidade</Link>
+          </div>
+          <Link href="/contato" className="flex items-center gap-2 hover:text-white transition mt-1 md:mt-0">
+            <FaEnvelope className="text-base" />
+            Entrar em contato
+          </Link>
         </div>
 
         {/* Redes sociais */}
@@ -34,7 +39,6 @@ export default function Footer() {
           </a>
         </div>
       </div>
-
     </footer>
   )
 }
