@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-
 import { API_URL } from "@/lib/api";
 
 interface Usuario {
@@ -16,7 +15,6 @@ export default function MinhaConta() {
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState("");
   const router = useRouter();
-
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -57,7 +55,7 @@ export default function MinhaConta() {
     };
 
     buscarPerfil();
-  }, [router, API_URL]);
+  }, [router]);
 
   if (loading) return <p className="text-white text-center mt-20">Carregando...</p>;
   if (erro) return <p className="text-red-500 text-center mt-20">{erro}</p>;
@@ -77,18 +75,23 @@ export default function MinhaConta() {
 
         {usuario.assinatura_ativa ? (
           <a
-            href={`${API_URL?.replace("/api", "")}/download-launcher`}
+            href={`${API_URL.replace("/api", "")}/download-launcher`}
             className="block mt-6 bg-neonBlue text-black font-semibold py-2 px-4 rounded text-center hover:bg-cyan-400"
             download
           >
             Baixar Launcher
           </a>
         ) : (
-          <p className="mt-6 text-yellow-400 text-center">
-            Para baixar o launcher, ative sua assinatura!
-          </p>
+          <div className="mt-6 text-center">
+            <p className="text-yellow-400 mb-4">
+              Para baixar o launcher, ative sua assinatura:
+            </p>
+            <AssinarButton />
+          </div>
         )}
       </div>
     </div>
   );
 }
+
+import AssinarButton from "@/components/AssinarButton"; 
