@@ -3,7 +3,11 @@
 import Image from 'next/image'
 import { PackageSearch } from 'lucide-react'
 
+import { useRouter } from "next/navigation"
+
 export default function PromoPackSection() {
+  const router = useRouter()
+
   return (
     <section className="bg-[#f9f9f6] text-zinc-900 py-20 px-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
@@ -19,7 +23,10 @@ export default function PromoPackSection() {
             Aproveite nossa oferta exclusiva e ganhe <strong>4 jogos com 40% de desconto</strong>!
             Ideal para turbinar suas lives ou começar sua jornada com estilo no TikTok.
           </p>
-          <button className="bg-pink-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-pink-700 transition-all">
+          <button
+            onClick={() => router.push("/pacote-launcher")}
+            className="bg-pink-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-pink-700 transition-all"
+          >
             Descubra agora →
           </button>
         </div>
@@ -27,7 +34,7 @@ export default function PromoPackSection() {
         {/* Imagem à direita */}
         <div className="flex-1">
           <Image
-            src="/promo.png" // <- substitua pelo nome real da imagem no `public`
+            src="/promo.png"
             alt="Pacote Promocional"
             width={600}
             height={400}

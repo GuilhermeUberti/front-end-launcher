@@ -3,7 +3,7 @@ import Hero from '@/components/Hero'
 import GameSection from '@/components/GameSection'
 import Footer from '@/components/Footer'
 import WhyGiftPlay from '@/components/WhyGiftPlay'
-import PromoPackSection from '@/components/PromoPackSection'
+import LauncherPackSection from '@/components/LauncherPackSection'
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
         <Hero />
       </section>
       <GameSection />
-      <PromoPackSection />
+      <LauncherPackSection />
       <WhyGiftPlay />
       <Footer />
     </main>
