@@ -20,10 +20,11 @@ export default function PromoPackSection() {
             Baixe o Launcher<br className="hidden md:block" /> e leve sua live a outro nível
           </h2>
           <p className="text-gray-700 text-lg mb-6">
-            Acesse jogos interativos criados para engajar seu público em tempo real no TikTok! <br />
-            Com nosso launcher exclusivo, você instala, atualiza e joga com facilidade — tudo em um só lugar.
-            E ainda leva <strong>4 jogos com 40% de desconto</strong> por tempo limitado.
+            Transforme suas lives no TikTok com jogos interativos feitos sob medida para engajar sua audiência em tempo real! <br />
+            Com nosso launcher exclusivo, você instala, atualiza e joga com total praticidade — tudo em um só lugar. <br />
+            E o melhor: ao assinar, você garante <strong className="text-neonPink">acesso ilimitado a todos os jogos futuros</strong>, sem pagar nada a mais por isso!
           </p>
+
           <button
             onClick={() => router.push("/pacote-launcher")}
             className="bg-pink-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-pink-700 transition-all"
