@@ -14,20 +14,21 @@ export default function PromoPackSection() {
         {/* Texto à esquerda */}
         <div className="flex-1 text-left">
           <p className="text-sm font-semibold flex items-center gap-2 mb-2 uppercase tracking-wider text-pink-600">
-            <PackageSearch size={18} /> Economize 40%
+            <PackageSearch size={18} /> Oferta Especial
           </p>
           <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
-            Um Pacote,<br className="hidden md:block" /> Uma Aventura
+            Baixe o Launcher<br className="hidden md:block" /> e leve sua live a outro nível
           </h2>
           <p className="text-gray-700 text-lg mb-6">
-            Aproveite nossa oferta exclusiva e ganhe <strong>4 jogos com 40% de desconto</strong>!
-            Ideal para turbinar suas lives ou começar sua jornada com estilo no TikTok.
+            Acesse jogos interativos criados para engajar seu público em tempo real no TikTok! <br />
+            Com nosso launcher exclusivo, você instala, atualiza e joga com facilidade — tudo em um só lugar.
+            E ainda leva <strong>4 jogos com 40% de desconto</strong> por tempo limitado.
           </p>
           <button
             onClick={() => router.push("/pacote-launcher")}
             className="bg-pink-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-pink-700 transition-all"
           >
-            Descubra agora →
+            Baixar agora →
           </button>
         </div>
 
