@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { useState } from 'react'
-import PaymentButton from '@/components/PaymentButton'
+import AssinarButton from "@/components/AssinarButton"
 
 const gameImages = [
   '/games/goup.png',
@@ -13,12 +13,6 @@ const gameImages = [
 
 export default function CorridaAoCeuPage() {
   const [selectedImage, setSelectedImage] = useState(gameImages[0])
-
-  const product = {
-    name: 'Corrida ao Céu',
-    price: 450 / 100, // em centavos → R$ 47,50
-    description: 'Jogo interativo para lives do TikTok com integração TikFinity.',
-  }
 
   return (
     <div className="min-h-screen bg-black text-white px-6 py-10 md:px-20 pt-28">
@@ -60,14 +54,14 @@ export default function CorridaAoCeuPage() {
           </p>
 
           <ul className="mt-6 space-y-2">
-            <li className="flex items-center gap-2">🎮 CORRA ATÉ A LINHA DE CHEGADA</li>
-            <li className="flex items-center gap-2">🔗 COMPATÍVEL COM TIKFINITY E STE</li>
-            <li className="flex items-center gap-2">⚡ ENTREGA INSTANTÂNEA</li>
-            <li className="flex items-center gap-2">🔧 FÁCIL DE CONFIGURAR</li>
+            <li className="flex items-center gap-2">🔥 Faça sua live bombar com interações em tempo real</li>
+            <li className="flex items-center gap-2">🔌 Integração fácil com TikFinity e STE — plug and play</li>
+            <li className="flex items-center gap-2">🎯 Jogo disponível direto no nosso launcher exclusivo</li>
+            <li className="flex items-center gap-2">⚙️ Sem dor de cabeça: instalou, jogou, lucrou</li>
           </ul>
 
           {/* Botão Stripe */}
-          <PaymentButton product={product} />
+          <AssinarButton />
         </div>
       </div>
     </div>
