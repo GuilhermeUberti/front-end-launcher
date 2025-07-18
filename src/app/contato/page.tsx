@@ -28,7 +28,7 @@ export default function ContatoPage() {
   const onSubmit = async (data: FormData) => {
     try {
       setErro("");
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/email/contato`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/email/contato`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
