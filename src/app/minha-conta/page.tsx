@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { API_URL } from "@/lib/api";
+import AssinarButton from "@/components/AssinarButton";
 
 interface Usuario {
   name: string;
@@ -57,6 +58,39 @@ export default function MinhaConta() {
     buscarPerfil();
   }, [router]);
 
+  const baixarLauncher = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Token não encontrado. Faça login novamente.");
+      return;
+    }
+
+    try {
+      const res = await fetch(`${API_URL}/download-launcher`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        redirect: "manual",
+      });
+
+      if (res.status === 302) {
+        const redirectURL = res.headers.get("Location");
+        if (redirectURL) {
+          window.location.href = redirectURL;
+        } else {
+          alert("Erro: redirecionamento inválido.");
+        }
+      } else if (res.status === 403) {
+        alert("Assinatura inativa. Ative sua assinatura para baixar.");
+      } else {
+        const json = await res.json();
+        alert(json.msg || "Erro ao tentar baixar o launcher.");
+      }
+    } catch (e) {
+      alert("Erro de conexão com o servidor.");
+    }
+  };
+
   if (loading) return <p className="text-white text-center mt-20">Carregando...</p>;
   if (erro) return <p className="text-red-500 text-center mt-20">{erro}</p>;
   if (!usuario) return null;
@@ -74,13 +108,12 @@ export default function MinhaConta() {
         </p>
 
         {usuario.assinatura_ativa ? (
-          <a
-            href="https://github.com/GuilhermeUberti/giftplay-installer/releases/download/v1.0.0/GiftPlayInstaller.exe"
+          <button
+            onClick={baixarLauncher}
             className="block mt-6 bg-neonBlue text-black font-semibold py-2 px-4 rounded text-center hover:bg-cyan-400"
-            download
           >
             Baixar Launcher
-          </a>
+          </button>
         ) : (
           <div className="mt-6 text-center">
             <p className="text-yellow-400 mb-4">
@@ -93,5 +126,3 @@ export default function MinhaConta() {
     </div>
   );
 }
-
-import AssinarButton from "@/components/AssinarButton"; 
