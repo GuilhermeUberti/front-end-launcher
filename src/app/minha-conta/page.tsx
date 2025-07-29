@@ -42,7 +42,7 @@ export default function MinhaConta() {
         } else {
           throw new Error(json?.msg || "Erro inesperado");
         }
-      } catch (err) {
+      } catch  {
         setErro("Erro ao carregar dados.");
         localStorage.clear();
         router.replace("/login");
