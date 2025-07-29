@@ -63,8 +63,7 @@ export default function MinhaConta() {
       const res = await fetch(`${API_URL}/api/download-launcher`, {
         headers: {
           Authorization: `Bearer ${token}`,
-        },
-        redirect: "manual",
+        }        
       });
 
       if (res.status === 302) {
