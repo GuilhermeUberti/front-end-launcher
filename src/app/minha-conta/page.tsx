@@ -14,7 +14,6 @@ interface Usuario {
 export default function MinhaConta() {
   const [usuario, setUsuario] = useState<Usuario | null>(null);
   const [loading, setLoading] = useState(true);
-  const [erro, setErro] = useState("");
   const router = useRouter();
 
   useEffect(() => {
@@ -81,13 +80,12 @@ export default function MinhaConta() {
         const json = await res.json();
         alert(json.msg || "Erro ao tentar baixar o launcher.");
       }
-    } catch (e) {
+    } catch {
       alert("Erro de conexão com o servidor.");
     }
   };
 
   if (loading) return <p className="text-white text-center mt-20">Carregando...</p>;
-  if (erro) return <p className="text-red-500 text-center mt-20">{erro}</p>;
   if (!usuario) return null;
 
   return (
