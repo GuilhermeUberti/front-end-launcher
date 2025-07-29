@@ -75,7 +75,7 @@ export default function MinhaConta() {
 
         {usuario.assinatura_ativa ? (
           <a
-            href="https://idyllic-frangollo-08e166.netlify.app/GiftPlayInstaller.exe"
+            href="https://github.com/GuilhermeUberti/giftplay-installer/releases/download/v1.0.0/GiftPlayInstaller.exe"
             className="block mt-6 bg-neonBlue text-black font-semibold py-2 px-4 rounded text-center hover:bg-cyan-400"
             download
           >
