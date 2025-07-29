@@ -60,7 +60,7 @@ export default function MinhaConta() {
     }
 
     try {
-      const res = await fetch(`${API_URL}/api/download-launcher`, {
+      const res = await fetch(`${API_URL}/download-launcher`, {
         headers: {
           Authorization: `Bearer ${token}`,
         }        
