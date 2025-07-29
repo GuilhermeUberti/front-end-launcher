@@ -75,7 +75,7 @@ export default function MinhaConta() {
 
         {usuario.assinatura_ativa ? (
           <a
-            href="https://github.com/GuilhermeUberti/giftplay-installer/releases/download/v1.0.0/GiftPlayInstaller.exe"
+            href={`${API_URL}/download`}
             className="block mt-6 bg-neonBlue text-black font-semibold py-2 px-4 rounded text-center hover:bg-cyan-400"
             download
           >
