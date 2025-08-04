@@ -6,12 +6,19 @@ interface GameCardProps {
   description?: string
   icon?: ReactNode
   imageSrc?: string
-  footer?: ReactNode // <-- novo
+  footer?: ReactNode
+  disabled?: boolean // <-- nova prop
 }
 
-export default function GameCard({ title, description, icon, imageSrc, footer }: GameCardProps) {
+export default function GameCard({ title, description, icon, imageSrc, footer, disabled }: GameCardProps) {
   return (
-    <div className="bg-darkBg border border-neonBlue rounded-2xl p-6 shadow-[0_0_20px_#00ffff40] hover:shadow-[0_0_40px_#00ffff80] transition-all duration-300">
+    <div
+      className={`rounded-2xl p-6 transition-all duration-300 ${
+        disabled
+          ? 'bg-darkBg border border-gray-600 opacity-50 cursor-not-allowed'
+          : 'bg-darkBg border border-neonBlue shadow-[0_0_20px_#00ffff40] hover:shadow-[0_0_40px_#00ffff80]'
+      }`}
+    >
       <div className="mb-4 flex justify-center">
         {imageSrc ? (
           <Image src={imageSrc} alt={title} width={250} height={250} unoptimized />

@@ -12,7 +12,7 @@ export default function GameSection() {
         </p>
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {/* Corrida ao Céu com redirecionamento */}
+          {/* GoUp - jogo ativo */}
           <Link href="/games/corrida-ao-ceu" className="block">
             <GameCard
               title="GoUp"
@@ -21,19 +21,21 @@ export default function GameSection() {
             />
           </Link>
 
-          {/* Jogos em desenvolvimento */}
-          <Link href="/games/maze-more">
+          {/* MazeMore - jogo ativo */}
+          <Link href="/games/maze-more" className="block">
             <GameCard
-              title="EscapeMaze Live"
+              title="MazeMore"
               description="Escape do labirinto antes que sua audiência te vença!"
               imageSrc="/maze-gif.gif"
             />
           </Link>
 
+          {/* LiveRally - jogo em desenvolvimento (desabilitado visualmente) */}
           <GameCard
             title="LiveRally"
             imageSrc="/LiveRally.png"
             icon={<MousePointerClickIcon />}
+            disabled
             footer={
               <div className="flex items-center justify-center text-yellow-400 gap-2 text-sm">
                 <Wrench size={18} />
