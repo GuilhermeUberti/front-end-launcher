@@ -13,7 +13,7 @@ interface GameCardProps {
 export default function GameCard({ title, description, icon, imageSrc, footer, disabled }: GameCardProps) {
   return (
     <div
-      className={`min-h-[420px] h-full flex flex-col justify-between rounded-2xl p-6 transition-all duration-300 ${
+      className={`min-h-[360px] h-full flex flex-col justify-between rounded-2xl p-6 transition-all duration-300 ${
         disabled
           ? 'bg-darkBg border border-gray-600 opacity-50 cursor-not-allowed'
           : 'bg-darkBg border border-neonBlue shadow-[0_0_20px_#00ffff40] hover:shadow-[0_0_40px_#00ffff80]'
